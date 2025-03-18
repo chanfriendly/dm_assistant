@@ -1,0 +1,35 @@
+model:
+  model_name: "microsoft/phi-2"
+  trust_remote_code: true
+  tokenizer_kwargs:
+    pad_token: "<pad>"
+  torch_dtype_str: "bfloat16"
+  model_kwargs:
+    load_in_4bit: true
+data:
+  train:
+    datasets:
+      - dataset_name: "text_sft"
+        dataset_path: "./training_data/map_examples.jsonl"
+training:
+  output_dir: "output/dnd_map_module"
+  optimizer: "adamw_torch_fused"
+  learning_rate: 3e-5
+  max_steps: 300
+  use_peft: true
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 8
+  logging_steps: 10
+  save_steps: 50
+  eval_strategy: "no"
+  trainer_kwargs:
+   label_names: [] 
+peft:
+  lora_r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  lora_target_modules:
+    - "q_proj"
+    - "v_proj"
+    - "k_proj"
+    - "o_proj"

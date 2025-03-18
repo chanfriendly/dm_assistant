@@ -1,0 +1,39 @@
+model:
+  model_name: "microsoft/phi-2"  # Reuse the same base model
+  trust_remote_code: true
+  tokenizer_kwargs:
+    pad_token: "<pad>"
+  torch_dtype_str: "bfloat16"  # Changed from dtype to torch_dtype_str
+  model_kwargs:
+    load_in_4bit: true  # Use 4-bit quantization for lower memory usage
+
+data:
+  train:
+    datasets:
+      - dataset_name: "text_sft"
+        dataset_path: "./training_data/npc_examples.jsonl"  # Our NPC generation examples
+
+training:
+  output_dir: "output/dnd_npc_module"
+  optimizer: "adamw_torch_fused"
+  learning_rate: 5e-5  # Slightly higher for creative tasks
+  max_steps: 500
+  use_peft: true
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 8
+  logging_steps: 10
+  save_steps: 100
+  eval_strategy: "steps"  # Changed from evaluation_strategy to eval_strategy
+  eval_steps: 100
+  trainer_kwargs:
+   label_names: [] 
+
+peft:
+  lora_r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  lora_target_modules:  # Changed from target_modules to lora_target_modules
+    - "q_proj"
+    - "v_proj"
+    - "k_proj"
+    - "o_proj"
