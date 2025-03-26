@@ -152,6 +152,8 @@ peft:
     - "o_proj"
 EOL
 
+export TRANSFORMERS_OFFLINE=1
+export HF_HUB_DISABLE_SYMLINKS_WARNING=1
 
 # Activate the virtual environment
 source dnd_env/bin/activate
