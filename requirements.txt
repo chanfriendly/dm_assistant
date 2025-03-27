@@ -1,0 +1,10 @@
+# requirements.txt
+mlx
+mlx-lm>=0.10.0  # Ensure you have a recent version with LoRA/Quantization helpers
+transformers
+datasets
+huggingface_hub
+requests
+tqdm
+# Add 'sentencepiece' if required by your chosen tokenizer
+sentencepiece
