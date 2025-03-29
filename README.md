@@ -21,6 +21,7 @@ The goal is to create a helpful assistant for DMs and players that can quickly a
     *   Log visualization confirmed training stability improved with batch size 4, but validation loss plateaued around iteration 500.
 *   Previous evaluation of the *quantized* model from the best checkpoint revealed **significant reliability issues (Rated: F)**, including frequent hallucinations and rule inaccuracies.
 *   **Next Steps:**
+<<<<<<< HEAD
     1.  **Efficient Data Curation:** Utilize the newly developed analysis scripts (`flag_short_answers.py`, `find_near_duplicate_questions.py`, `analyze_topic_balance.py`) to systematically identify and review potential issues (short answers, duplicates, topic gaps) in the ~4,000 pair dataset. Perform targeted manual correction and removal based on script outputs.
     2.  **Evaluate Non-Quantized Model:** Test the *non-quantized* fused model (from the previous best checkpoint, Iter 500) to isolate performance issues potentially caused by quantization vs. the fine-tuning/data itself.
     3.  **Iterate on Training:** Based on evaluation results and data curation, re-train with the improved dataset, potentially adjusting hyperparameters.
@@ -28,6 +29,14 @@ The goal is to create a helpful assistant for DMs and players that can quickly a
 
 ![loss_curve](https://github.com/user-attachments/assets/6395dd35-9fbb-4db9-a08b-353883f673a7)
 
+=======
+    1.  **Data Quality Focus:** Continue rigorous review and curation of the ~3700 Q&A pairs using `review_data.py` to ensure accuracy, conciseness, and relevance (removing potential noise like non-core D&D concepts if applicable).
+    2.  **Evaluate Non-Quantized Model:** Test the *non-quantized* fused model (from the best training checkpoint, e.g., Iter 500) to determine if quantization significantly degraded performance.
+    3.  **Iterate on Training:** Based on evaluation results, potentially re-train with the curated dataset, possibly adjusting hyperparameters (e.g., adding a learning rate scheduler, increasing iterations with early stopping, experimenting cautiously with LoRA rank/alpha).
+    4.  **Root Cause Analysis:** If issues persist even with curated data and a non-quantized model, further investigation into the base model's suitability, prompt formatting, or fine-tuning process may be needed.
+ 
+![loss_curve](https://github.com/user-attachments/assets/6395dd35-9fbb-4db9-a08b-353883f673a7)
+>>>>>>> 13104e194e3228714844793bedcad8336abe2f59
 
 ## Features
 
