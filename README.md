@@ -4,7 +4,7 @@ This project aims to fine-tune a lightweight, open-source large language model (
 
 The goal is to create a helpful assistant for DMs and players that can quickly answer specific rules questions based on the official sourcebooks.
 
-**Current Status (As of [Insert Current Date, e.g., 2024-03-29]):**
+**Current Status (As of 2024-03-29):**
 
 *   Initial project pipeline setup (data generation, preparation, training, quantization, evaluation, inference scripts) is complete.
 *   Utility scripts added for training analysis (`visualize_log.py`) and initial data review (`review_data.py`).
